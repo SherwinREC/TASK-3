@@ -1,0 +1,9 @@
+Total Sales = SUM('Table'[Sales])
+Total Profit = SUM('Table'[Profit])
+Avg Profit Margin = DIVIDE([Total Profit],[Total Sales],0)
+Sales Growth % = 
+DIVIDE(
+    [Total Sales] - CALCULATE([Total Sales], PARALLELPERIOD('Table'[Date], -1, YEAR)),
+    CALCULATE([Total Sales], PARALLELPERIOD('Table'[Date], -1, YEAR)),
+    0
+)
