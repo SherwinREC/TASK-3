@@ -1,0 +1,13 @@
+import pandas as pd
+import kagglehub
+import os
+
+path = kagglehub.dataset_download("syedanwarafridi/vehicle-sales-data")
+files = os.listdir(path)
+df = pd.read_csv(os.path.join(path, files[0]))
+df = df.drop_duplicates().reset_index(drop=True)
+if "Date" in df.columns:
+    df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
+output_file = "C:\\Users\\YourName\\vehicle_sales_clean.csv"
+df.to_csv(output_file, index=False)
+print("Saved:", output_file)
